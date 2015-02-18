@@ -182,7 +182,7 @@ static char UIScrollViewPullToRefreshView;
         
         self.titles = [NSMutableArray arrayWithObjects:NSLocalizedString(@"Pull to refresh...",),
                              NSLocalizedString(@"Release to refresh...",),
-                             NSLocalizedString(@"Loading...",),
+                             NSLocalizedString(@"Fetching messages...",),
                                 nil];
         
         self.subtitles = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", nil];
@@ -369,6 +369,8 @@ static char UIScrollViewPullToRefreshView;
 #pragma mark - Observing
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+//    NSLog(@"observeValueForKeyPath: %@", keyPath);
+    
     if([keyPath isEqualToString:@"contentOffset"])
         [self scrollViewDidScroll:[[change valueForKey:NSKeyValueChangeNewKey] CGPointValue]];
     else if([keyPath isEqualToString:@"contentSize"]) {
